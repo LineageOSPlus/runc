@@ -96,7 +96,7 @@ func prepareRootfs(pipe io.ReadWriter, config *configs.Config) (err error) {
 		return newSystemErrorWithCausef(err, "changing dir to %q", config.Rootfs)
 	}
 
-	if config.NoPivotRoot {
+	if !config.NoPivotRoot {
 		err = msMoveRoot(config.Rootfs)
 	} else {
 		err = pivotRoot(config.Rootfs)
