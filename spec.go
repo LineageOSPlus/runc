@@ -150,7 +150,7 @@ func createLibContainerRlimit(rlimit specs.LinuxRlimit) (configs.Rlimit, error) 
 }
 
 func validatePlatform(platform *specs.Platform) error {
-	if platform.OS != runtime.GOOS {
+	if (platform.OS != runtime.GOOS && platform.OS != "linux" && runtime.GOOS != "android") {
 		return fmt.Errorf("target os %s mismatch with current os %s", platform.OS, runtime.GOOS)
 	}
 	if platform.Arch != runtime.GOARCH {
